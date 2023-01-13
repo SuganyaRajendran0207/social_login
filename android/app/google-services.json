@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "546717421353",
+    "project_id": "suganya-social-login",
+    "storage_bucket": "suganya-social-login.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546717421353:android:cc68a5680e3b102e3ff138",
+        "android_client_info": {
+          "package_name": "com.example.social_login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546717421353-tef25nvg0bir8rateslndoe42va4toc6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxlQQl8jVF0J5qiR8LYtjpcsspKKS-zqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546717421353-tef25nvg0bir8rateslndoe42va4toc6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
