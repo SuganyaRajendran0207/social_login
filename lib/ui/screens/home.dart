@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:login_package/service/auth_login_service.dart';
 import 'package:social_login/ui/screens/email.dart';
-import 'package:social_login/ui/screens/google_signin.dart';
+import 'package:social_login/ui/screens/user_detail.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key, required this.title});
@@ -15,21 +16,25 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: Column(
-        children: [
-          SignInButton(Buttons.Email, onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (BuildContext context) {
-              return const EmailMenu();
-            }));
-          }),
-          SignInButton(Buttons.Google, onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (BuildContext context) {
-                  return const GoogleSignIn();
-                }));
-          }),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SignInButton(Buttons.Email, onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                return EmailSignIn();
+              }));
+            }),
+            SignInButton(Buttons.Google, onPressed: () {
+              AuthService().signInWithGoogle(context).then((value) => Navigator.push(context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return UserDetail(user: value!, type:Buttons.Google);
+                  })));
+            }),
+          ],
+        ),
       ),
     );
   }

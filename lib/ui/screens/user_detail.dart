@@ -36,13 +36,13 @@ class UserDetail extends StatelessWidget{
               ),
               const SizedBox(height: 16,),
               InkWell(
-                onTap: (){
+                onTap: () async{
                   switch(type){
                     case Buttons.Email:
-                      AuthService().emailLogout();
+                      await AuthService().emailLogout(context);
                       break;
                     case Buttons.Google:
-                      AuthService().googleLogout();
+                      await AuthService().googleLogout();
                       break;
                     case Buttons.GoogleDark:
                       // TODO: Handle this case.
@@ -93,13 +93,15 @@ class UserDetail extends StatelessWidget{
                       // TODO: Handle this case.
                       break;
                   }
+
+                  Navigator.pop(context);
                 },
                 child: Container(
                   color: Colors.blue,
                   width: MediaQuery.of(context).size.width,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(16),
-                  child: const Text('Login', style: TextStyle(color: Colors.white),),
+                  child: const Text('Logout', style: TextStyle(color: Colors.white),),
                 ),
               ),
             ],
