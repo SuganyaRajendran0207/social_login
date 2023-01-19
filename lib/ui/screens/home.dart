@@ -28,10 +28,14 @@ class MyHomePage extends StatelessWidget {
               }));
             }),
             SignInButton(Buttons.Google, onPressed: () {
-              AuthService().signInWithGoogle(context).then((value) => Navigator.push(context,
-                  MaterialPageRoute(builder: (BuildContext context) {
-                    return UserDetail(user: value!, type:Buttons.Google);
-                  })));
+              AuthService().signInWithGoogle(context).then((value) {
+                if(value != null){
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (BuildContext context) {
+                        return UserDetail(user: value, type:Buttons.Google);
+                      }));
+                }
+              });
             }),
           ],
         ),

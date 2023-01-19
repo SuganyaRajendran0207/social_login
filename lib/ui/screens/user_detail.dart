@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:login_package/service/auth_login_service.dart';
 
-
-class UserDetail extends StatelessWidget{
-
+class UserDetail extends StatelessWidget {
   UserDetail({super.key, required this.user, required this.type});
 
   User user;
@@ -26,18 +24,31 @@ class UserDetail extends StatelessWidget{
               Text(
                 user.email ?? '',
               ),
-              const SizedBox(height: 16,),
+              const SizedBox(
+                height: 16,
+              ),
               Text(
                 user.displayName ?? '',
               ),
-              const SizedBox(height: 16,),
+              const SizedBox(
+                height: 16,
+              ),
               Text(
                 user.uid ?? '',
               ),
-              const SizedBox(height: 16,),
+              const SizedBox(
+                height: 16,
+              ),
               InkWell(
-                onTap: () async{
-                  switch(type){
+                onTap: () async {
+
+                  FirebaseAuth.instance.authStateChanges().listen((event) {
+                    print(event);
+                    if (event == null) {
+                      Navigator.pop(context);
+                    }
+                  });
+                  switch (type) {
                     case Buttons.Email:
                       await AuthService().emailLogout(context);
                       break;
@@ -93,15 +104,16 @@ class UserDetail extends StatelessWidget{
                       // TODO: Handle this case.
                       break;
                   }
-
-                  Navigator.pop(context);
                 },
                 child: Container(
                   color: Colors.blue,
                   width: MediaQuery.of(context).size.width,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(16),
-                  child: const Text('Logout', style: TextStyle(color: Colors.white),),
+                  child: const Text(
+                    'Logout',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             ],
