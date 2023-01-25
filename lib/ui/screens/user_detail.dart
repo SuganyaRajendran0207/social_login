@@ -41,13 +41,6 @@ class UserDetail extends StatelessWidget {
               ),
               InkWell(
                 onTap: () async {
-
-                  FirebaseAuth.instance.authStateChanges().listen((event) {
-                    print(event);
-                    if (event == null) {
-                      Navigator.pop(context);
-                    }
-                  });
                   switch (type) {
                     case Buttons.Email:
                       await AuthService().emailLogout(context);
@@ -104,6 +97,12 @@ class UserDetail extends StatelessWidget {
                       // TODO: Handle this case.
                       break;
                   }
+                  FirebaseAuth.instance.authStateChanges().listen((event) {
+                    print(event);
+                    if (event == null && Navigator.canPop(context)) {
+                      Navigator.pop(context);
+                    }
+                  });
                 },
                 child: Container(
                   color: Colors.blue,

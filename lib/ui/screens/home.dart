@@ -37,6 +37,26 @@ class MyHomePage extends StatelessWidget {
                 }
               });
             }),
+            SignInButton(Buttons.Apple, onPressed: () {
+              AuthService().signInWithApple(context).then((value) {
+                if(value != null){
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (BuildContext context) {
+                        return UserDetail(user: value, type:Buttons.Apple);
+                      }));
+                }
+              });
+            }),
+            SignInButton(Buttons.Facebook, onPressed: () {
+              AuthService().signInWithFacebook(context).then((value) {
+                if(value != null){
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (BuildContext context) {
+                        return UserDetail(user: value, type:Buttons.Facebook);
+                      }));
+                }
+              });
+            }),
           ],
         ),
       ),
